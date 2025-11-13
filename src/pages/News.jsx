@@ -4,15 +4,17 @@ import NewsCard from "../Components/NewsCard";
 
 export default function News() {
   const [articles, setArticles] = useState([]);
-  const [query, setQuery] = useState("technology");
+  const [query, setQuery] = useState(""); // Search box stays empty
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_KEY = "3f44359619cee6324f5a1917d39984f3";
+  const API_KEY = "75df2b3abc4d487fbe2392837184f818";
+  const DEFAULT_TOPIC = "Crime"; // Default news topic
 
   const fetchNews = async (topic) => {
     setLoading(true);
     setError("");
+    setArticles([]); // Clear previous articles
     try {
       const res = await fetch(
         `https://newsapi.org/v2/everything?q=${topic}&language=en&pageSize=12&apiKey=${API_KEY}`
@@ -27,8 +29,9 @@ export default function News() {
     }
   };
 
+  // Fetch default news on component mount
   useEffect(() => {
-    fetchNews(query);
+    fetchNews(DEFAULT_TOPIC);
   }, []);
 
   const handleSubmit = (e) => {

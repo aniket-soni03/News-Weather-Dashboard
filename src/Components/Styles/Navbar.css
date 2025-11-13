@@ -1,26 +1,33 @@
+/* ---------- Navbar ---------- */
 #navbar {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.8rem 2rem;
-  background-color: var(--bg-color);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--text-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: background-color 0.4s, color 0.4s;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   flex-wrap: wrap;
+  transition: all 0.4s ease;
 }
 
+/* ---------- Brand ---------- */
 #brand {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--text-color);
   margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
+/* ---------- Center Links ---------- */
 #navbar-center {
   display: flex;
   justify-content: center;
@@ -29,32 +36,63 @@
   flex-wrap: wrap;
 }
 
+/* ---------- Nav Buttons ---------- */
 .nav-btn {
-  text-decoration: none;
+  position: relative;
   color: var(--text-color);
+  text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: 0.5rem 0.8rem;
+  transition: color 0.3s ease;
 }
 
-.nav-btn:hover {
-  background-color: var(--card-bg);
+.nav-btn span {
+  position: relative;
+  z-index: 1;
 }
 
-.nav-btn.active {
-  background-color: #007bff;
-  color: #fff;
+/* Sliding gradient underline effect */
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #007bff, #00b7ff);
+  border-radius: 3px;
+  transition: width 0.35s ease;
 }
 
+.nav-btn:hover::after {
+  width: 100%;
+}
+
+.nav-btn.active::after {
+  width: 100%;
+}
+
+/* ---------- Right Section ---------- */
 #navbar-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 0.8rem;
 }
 
-/* ✅ Responsiveness */
+/* ---------- Hover color shift ---------- */
+.nav-btn:hover {
+  color: #007bff;
+}
+
+/* ---------- Active button color ---------- */
+.nav-btn.active {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* ---------- Responsiveness ---------- */
 @media (max-width: 900px) {
   #navbar {
     flex-direction: column;
@@ -68,11 +106,11 @@
 
 @media (max-width: 500px) {
   #brand {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .nav-btn {
     font-size: 0.9rem;
-    padding: 0.3rem 0.7rem;
+    padding: 0.4rem 0.7rem;
   }
 }
