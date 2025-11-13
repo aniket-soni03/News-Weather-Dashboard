@@ -1,0 +1,6 @@
+/* AOS.css */
+/* fine-tune transitions and smoothness */
+[data-aos] {
+  transition-property: transform, opacity !important;
+  will-change: transform, opacity;
+}

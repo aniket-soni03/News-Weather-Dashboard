@@ -1,0 +1,128 @@
+:root {
+  --primary: #007bff;
+  --gradient: linear-gradient(135deg, #007bff, #00b7ff);
+  --text: #222;
+  --bg: #f7f9fc;
+  --card-bg: #ffffffd9;
+}
+
+[data-theme="dark"] {
+  --primary: #0dcaf0;
+  --gradient: linear-gradient(135deg, #0dcaf0, #007bff);
+  --text: #f1f1f1;
+  --bg: #121212;
+  --card-bg: #1f1f1fdd;
+}
+
+#news-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 3rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ---------- Form ---------- */
+#news-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+}
+
+#news-form input {
+  flex: 1 1 250px;
+  min-width: 200px;
+  max-width: 450px;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+#news-form input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+#news-form button {
+  padding: 0.9rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--gradient);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#news-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* ---------- Status ---------- */
+.status-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.status-msg.error {
+  color: #ff4444;
+}
+
+/* ---------- Grid ---------- */
+#news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  justify-items: center;
+}
+
+/* ---------- Responsiveness ---------- */
+/* Proper responsive fix for news form input and button */
+@media (max-width: 768px) {
+  #news-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #news-form input,
+  #news-form button {
+    flex: 1 1 auto;     /* override original flex-basis */
+    min-width: 0;       /* override original min-width */
+    max-width: 100%;    /* override original max-width */
+    width: 100%;        /* full width for mobile/tablet */
+    box-sizing: border-box; 
+  }
+
+  #news-form input {
+    margin-bottom: 0.5rem; /* spacing between input & button */
+  }
+}
+
+
